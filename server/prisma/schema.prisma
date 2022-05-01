@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAT DateTime @default(now())
+  updatedAT DateTime @updatedAt
+
+  email String @unique
+  hash  String
+
+  firstName String?
+  lastName  String?
+}
+
+model City {
+  id   Int    @id @default(autoincrement())
+  Name String @unique
+
+  company Company[]
+  @@map("Cities")
+}
+
+model Company {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  address    String
+  phone      String   @unique
+  cityId     Int
+  city       City     @relation(fields: [cityId], references: [id])
+  webAddress String   @unique
+  workers    Worker[]
+  rewiews    Rewiew[]
+
+  @@map("Companies")
+}
+
+model Graduate {
+  id         Int      @id @default(autoincrement())
+  name       String
+  lastName   String
+  patronymic String
+  email      String   @unique
+  phone      String   @unique
+  specialtyId Int  
+  specialty Specialty @relation(fields: [specialtyId], references: [id]) 
+  rewiews    Rewiew[]
+  workers    Worker[]
+
+  @@map("Graduetes")
+}
+
+model Rewiew {
+  id Int @id @default(autoincrement())
+
+  graduateId Int
+  companyId  Int
+
+  graduate Graduate @relation(fields: [graduateId], references: [id])
+  company  Company  @relation(fields: [companyId], references: [id])
+  @@map("Rewiews")
+}
+
+model Worker {
+  id Int @id @default(autoincrement())
+
+  graduateId Int
+  graduate   Graduate @relation(fields: [graduateId], references: [id])
+
+  companyId Int
+  company   Company @relation(fields: [companyId], references: [id])
+
+  statusWork Boolean
+  @@map("Workers")
+}
+
+model Specialty {
+  id Int @id @default(autoincrement())
+  name String @unique
+  year String 
+  shortName String @unique
+  graduates Graduate[]
+  @@map("specialties")
+}
