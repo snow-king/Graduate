@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, MaxLength, MinLength } from 'class-validator';
 
 export class GraduateDto {
   @IsNotEmpty()
@@ -8,11 +8,17 @@ export class GraduateDto {
   lastName: string;
   @IsNotEmpty()
   patronymic: string;
+
+  @IsOptional()
   @IsEmail()
   email?: string;
+
+  @IsOptional()
   @MinLength(10)
   @MaxLength(10)
   phone?: string;
+  
+  @IsNotEmpty()
   specialtyID: number;
 }
 

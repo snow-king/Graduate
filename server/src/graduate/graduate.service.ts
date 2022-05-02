@@ -69,7 +69,6 @@ export class GraduateService {
   }
   async edit(GraduateId: number, dto: GraduateUpdateDto) {
     try {
-      console.log(GraduateId, dto);
       const updateGraduate = await this.prisma.graduate.update({
         where: {
           id: GraduateId,

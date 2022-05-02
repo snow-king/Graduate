@@ -42,16 +42,16 @@ model Company {
 }
 
 model Graduate {
-  id         Int      @id @default(autoincrement())
-  name       String
-  lastName   String
-  patronymic String
-  email      String   @unique
-  phone      String   @unique
-  specialtyId Int  
-  specialty Specialty @relation(fields: [specialtyId], references: [id]) 
-  rewiews    Rewiew[]
-  workers    Worker[]
+  id          Int       @id @default(autoincrement())
+  name        String
+  lastName    String
+  patronymic  String
+  email       String    @unique
+  phone       String    @unique
+  specialtyId Int
+  specialty   Specialty @relation(fields: [specialtyId], references: [id])
+  rewiews     Rewiew[]
+  workers     Worker[]
 
   @@map("Graduetes")
 }
@@ -77,14 +77,16 @@ model Worker {
   company   Company @relation(fields: [companyId], references: [id])
 
   statusWork Boolean
+  @@unique(fields: [graduateId, companyId], name: "graduateWork")
   @@map("Workers")
 }
 
 model Specialty {
-  id Int @id @default(autoincrement())
-  name String @unique
-  year String 
-  shortName String @unique
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  year      String
+  shortName String     @unique
   graduates Graduate[]
+
   @@map("specialties")
 }
