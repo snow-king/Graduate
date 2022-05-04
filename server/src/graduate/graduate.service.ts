@@ -48,13 +48,13 @@ export class GraduateService {
       throw error;
     }
   }
-  async getOne(query: { name: string; lastName: string; patronymic: string }) {
+  async getOne(dto: GraduateDto) {
     try {
       const graduate = await this.prisma.graduate.findFirst({
         where: {
-          name: query.name,
-          lastName: query.lastName,
-          patronymic: query.patronymic,
+          name: dto.name,
+          lastName: dto.lastName,
+          patronymic: dto.patronymic,
         },
       });
       if (!graduate) throw new ForbiddenException('Credentials incorrect');

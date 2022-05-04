@@ -18,6 +18,7 @@ export class GraduateDto {
   @MaxLength(10)
   phone?: string;
   
+  @IsOptional()
   @IsNotEmpty()
   specialtyID: number;
 }
