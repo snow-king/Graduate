@@ -23,10 +23,8 @@ export class GraduateController {
     return this.graduateService.add(dto);
   }
   @Get()
-  getOne(
-    @Query() query: { name: string; lastName: string; patronymic: string },
-  ) {
-    return this.graduateService.getOne(query);
+  getOne(@Query() dto: GraduateDto) {
+    return this.graduateService.getOne(dto);
   }
   @Patch('edit/:id')
   edit(@Param() { id }, @Body() dto: GraduateUpdateDto[]) {

@@ -6,7 +6,7 @@ import { SpecialtyDto } from './dto';
 @Injectable()
 export class SpecialtyService {
   constructor(private prisma: PrismaService) {}
-  async getSpecialty() {
+  async getAll() {
     try {
       const specialty = await this.prisma.specialty.findMany();
       return specialty;
