@@ -23,17 +23,16 @@ model City {
   id   Int    @id @default(autoincrement())
   Name String @unique
 
-  company Company[]
+  address Address[]
   @@map("Cities")
 }
 
 model Company {
   id         Int      @id @default(autoincrement())
   name       String   @unique
-  address    String
+  addressId  Int
+  address    Address  @relation(fields: [addressId], references: [id])
   phone      String   @unique
-  cityId     Int
-  city       City     @relation(fields: [cityId], references: [id])
   webAddress String   @unique
   workers    Worker[]
   rewiews    Rewiew[]
@@ -48,6 +47,7 @@ model Graduate {
   patronymic  String
   email       String    @unique
   phone       String    @unique
+  army        Boolean @default(false)
   specialtyId Int
   specialty   Specialty @relation(fields: [specialtyId], references: [id])
   rewiews     Rewiew[]
@@ -61,12 +61,27 @@ model Rewiew {
 
   graduateId Int
   companyId  Int
-
+  rewiew String
   graduate Graduate @relation(fields: [graduateId], references: [id])
   company  Company  @relation(fields: [companyId], references: [id])
   @@map("Rewiews")
 }
-
+model Address {
+  id Int @id @default(autoincrement())
+  cityId     Int
+  street String
+  regionID Int
+  region Region @relation(fields: [regionID], references: [id])
+  city City @relation(fields: [cityId], references: [id])
+  
+  company Company[]
+}
+model Region{
+  id Int @id @default(autoincrement())
+  name String
+  address Address[]
+  @@map("Regions")
+}
 model Worker {
   id Int @id @default(autoincrement())
 
@@ -77,6 +92,7 @@ model Worker {
   company   Company @relation(fields: [companyId], references: [id])
 
   statusWork Boolean
+  specialtyByUnivesity Boolean
   @@unique(fields: [graduateId, companyId], name: "graduateWork")
   @@map("Workers")
 }
@@ -88,5 +104,5 @@ model Specialty {
   shortName String     @unique
   graduates Graduate[]
 
-  @@map("specialties")
+  @@map("Specialties")
 }

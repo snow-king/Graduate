@@ -6,10 +6,13 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtGuard } from 'src/auth/guard';
 import { GraduateDto, GraduateUpdateDto } from './dto';
 import { GraduateService } from './graduate.service';
 
+@UseGuards(JwtGuard)
 @Controller('graduate')
 export class GraduateController {
   constructor(private graduateService: GraduateService) {}
