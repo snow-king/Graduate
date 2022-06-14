@@ -13,8 +13,7 @@ export class CompanyService {
           name: dto.name,
           phone: dto?.phone,
           webAddress: dto?.email,
-          cityId: dto?.cityId,
-          address: dto?.address,
+          addressId: dto?.address,
         },
       });
       return company;

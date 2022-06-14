@@ -1,4 +1,5 @@
 import { useUserStore } from "@/stores/useUserStore";
+import AddEntityScreen from "@/views/AddEntityScreen.vue";
 import LoginScreen from "@/views/LoginScreen.vue";
 import TableScreen from "@/views/TableScreen.vue";
 import { createRouter, createWebHistory } from "vue-router";
@@ -15,6 +16,11 @@ const router = createRouter({
       path: "/",
       name: "mainTable",
       component: TableScreen
+    },
+    {
+      path: "/add/:entity",
+      name: 'Add',
+      component: AddEntityScreen
     }
   ],
 });

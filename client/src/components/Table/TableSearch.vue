@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import CardModal from '../CardModal.vue'
-import SelectInput from './SelectInput.vue'
+import SelectInput from '../SelectInput.vue'
 const props = defineProps({
   inputValue: String,
   filters: {

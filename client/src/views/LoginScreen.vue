@@ -58,11 +58,10 @@ const userStore = useUserStore();
 
 
 const loginUser = async () =>{
-  const answer = await userStore.signin(login.value, password.value)
+  await userStore.signin(login.value, password.value)
   if (userStore.user.token){
-     router.push("/main")
-   }
-  
+     router.push("/")
+   } 
 }
 </script>
 

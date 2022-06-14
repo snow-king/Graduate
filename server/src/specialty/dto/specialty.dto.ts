@@ -1,12 +1,9 @@
 /* eslint-disable prettier/prettier */
-import {
-  IsNotEmpty,
-  IsOptional,
-} from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class SpecialtyDto {
-  @IsOptional()  
+  @IsOptional()
   @IsNotEmpty()
   name: string;
-  shortName: string;  
+  shortName: string;
 }

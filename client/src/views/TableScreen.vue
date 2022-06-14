@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col justify-between  min-h-screen min-h-screen bg-eveningSea">
+  <div class="flex-col justify-between   min-h-screen bg-eveningSea">
     <Header />
     <div class="flex justify-center items-center ">
       <div class="flex flex-col item-content w-full max-w-screen-xl  ">
@@ -62,6 +62,7 @@
 
 <script setup lang="ts">
 import type { Filter } from "@/dto";
+import type { Graduate } from "@/dto/graduate.dto";
 import { getGraduates } from "@/services/graduate";
 import { computed, ref, watch } from "vue";
 import Header from "../components/Header/Header.vue";
@@ -113,7 +114,7 @@ const emptyRow = {
   city: "-",
 }
 const parity = ref(false)
-const graduates = ref<Array<Object>>([])
+const graduates = ref<Array<Graduate>>([])
 const searchElement = ref('')
 
 const updateGraduate = async () => {

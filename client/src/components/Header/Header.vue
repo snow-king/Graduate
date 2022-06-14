@@ -14,7 +14,7 @@
     </div>
     <Transition enter-class="opacity-0" enter-active-class="ease-out transition-medium" enter-to-class="opacity-100"
       leave-class="opacity-100" leave-active-class="ease-out transition-medium" leave-to-class="opacity-0">
-      <div @keydown.esc="isOpen = false" v-show="isOpen" class="z-10 fixed inset-0 transition-opacity">
+      <div @keydown.esc="isOpen = false" v-show="isOpen" class="z-20 fixed inset-0 transition-opacity">
         <div @click="isOpen = false" class="absolute inset-0 bg-black opacity-50" tabindex="0"></div>
       </div>
     </Transition>
@@ -55,10 +55,12 @@
                 fill="white" />
             </svg>
 
-            <span>Общая таблица</span>
+            <span @click="router.push('/')">Общая таблица</span>
           </a>
         </li>
-       <HeaderItem mainElement="Добавление" :subElements="['Студенты', 'Предприятия']"></HeaderItem>
+        <HeaderItem 
+          mainElement="Добавление" 
+          :subElements="subElements"></HeaderItem>
       </ul>
       <div class="text-center bottom-0 absolute w-full">
         <hr class=" border-California m-2 shadow-md">
@@ -70,15 +72,25 @@
 
 <script setup lang="ts">
 import GraduateLogo from '../icons/GraduateLogo.vue';
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useUserStore } from "../../stores/useUserStore"
 import { storeToRefs } from "pinia";
 import HeaderItem from "./HeaderItem.vue";
-const toggleMenu = ref(false)
+import { useRouter } from 'vue-router';
 const isOpen = ref(false)
 const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
-
+const router = useRouter()
+const subElements = [
+  {
+  name: 'Выпускники',
+  path: '/add/graduates'
+  },
+  {
+  name: 'Предприятия',
+  path: '/add/company'
+  },
+]
 const drawer = () => {
   isOpen.value = !isOpen.value;
 }

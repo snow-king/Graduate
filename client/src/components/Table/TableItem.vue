@@ -5,7 +5,7 @@
         {{ props.item.lastName + "." + props.item.name[0] + "." + props.item.patronymic[0] }}
       </td>
       <td class="border-b border-edgewater  p-4 pl-8">
-        {{ props.item.group || "-" }}
+        {{ props.item.specialty + "." + props.item.year|| "-" }}
       </td>
       <td class="border-b border-edgewater  p-4 pl-8">
         {{ props.item.company || "-" }}

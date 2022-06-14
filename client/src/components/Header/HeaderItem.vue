@@ -11,7 +11,7 @@
                     stroke="white" stroke-width="3" stroke-linecap="round" />
             </svg>
 
-            <span>{{mainElement}}</span>
+            <span>{{ mainElement }}</span>
             <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-3 h-3 ml-auto " role="img"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" :class="{ 'rotate-180': toggleMenu }">
                 <path fill="currentColor"
@@ -19,13 +19,12 @@
                 </path>
             </svg>
         </a>
-        <Transition name="slide-dropdown" >
-            <ul class="relative accordion-collapse collapse transition duration-150 ease-in-out "
-                v-if="toggleMenu">
+        <Transition name="slide-dropdown">
+            <ul class="relative accordion-collapse collapse transition duration-150 ease-in-out " v-if="toggleMenu">
                 <li class="relative" v-for="subElement in subElements">
-                    <a href="#!"
+                    <a href='' @click='router.push(subElement.path)'
                         class="flex items-center text-sm py-4 pl-12 pr-6 h-6 overflow-hidden text-white text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-eveningSea transition duration-300 ease-in-out"
-                        data-mdb-ripple="true" data-mdb-ripple-color="primary">{{subElement}}</a>
+                        data-mdb-ripple="true" data-mdb-ripple-color="primary">{{ subElement.name }}</a>
                 </li>
             </ul>
         </Transition>
@@ -35,10 +34,18 @@
 
 <script setup lang="ts">
 import { ref, type PropType } from 'vue';
-const props = defineProps ({
+import { useRouter } from 'vue-router';
+const props = defineProps({
     mainElement: String,
-    subElements: Array as PropType<Array<String>>,
+    subElements: {
+        required: true,
+        type: Array as PropType<Array<{
+            name: string,
+            path: string,
+        }>>
+    },
 })
+const router = useRouter()
 const toggleMenu = ref(false)
 </script>
 
@@ -48,22 +55,22 @@ const toggleMenu = ref(false)
 }
 
 .slide-dropdown-leave-active {
-   animation: translateX 0.5s reverse;
+    animation: translateX 0.5s reverse;
 }
 
-@keyframes  translateX{
-  0% {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  
-  80% {
-    transform: translateX(-5px);
-  }
+@keyframes translateX {
+    0% {
+        opacity: 0;
+        transform: translateX(60px);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
+    80% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
 }
 </style>

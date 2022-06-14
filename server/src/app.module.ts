@@ -10,6 +10,7 @@ import { CompanyService } from './company/company.service';
 import { CompanyModule } from './company/company.module';
 import { SpecialtyController } from './specialty/specialty.controller';
 import { SpecialtyModule } from './specialty/specialty.module';
+import { SpecialtyService } from './specialty/specialty.service';
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import { SpecialtyModule } from './specialty/specialty.module';
     SpecialtyModule,
   ],
   controllers: [GraduateController, CompanyController, SpecialtyController],
-  providers: [CompanyService],
+  providers: [CompanyService, SpecialtyService],
 })
 export class AppModule {}

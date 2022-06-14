@@ -10,7 +10,7 @@
     <ul v-if="show"
         class="absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray focus:outline-none"
     >
-        <li v-for="el in filteredList" class="px-4 py-2 focus:bg" @click="currentElement=el">
+        <li v-for="el in filteredList" class="px-4 py-2 hover:bg-corn hover:text-white hover:font-bold cursor-pointer" @click="currentElement=el">
             {{el}}
         </li>
         <li v-if="!filteredList.length" class="px-4 py-2 focus:bg">

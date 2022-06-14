@@ -1,12 +1,18 @@
 /* eslint-disable prettier/prettier */
-import { IsEmail, IsNotEmpty, IsOptional, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class CompanyDto {
   @IsNotEmpty()
   name: string;
 
   @IsOptional()
-  address?: string;
+  address?: number;
 
   @IsOptional()
   @IsEmail()
@@ -18,18 +24,17 @@ export class CompanyDto {
   @MinLength(11)
   @MaxLength(11)
   phone?: string;
-  
+
   @IsOptional()
   @IsNotEmpty()
-  cityId: number
-  
+  cityId: number;
 }
 
 export class WorkerDto {
   @IsNotEmpty()
-  graduateID: number
+  graduateID: number;
   @IsNotEmpty()
-  companyID: number
+  companyID: number;
   @IsOptional()
-  statusWork: boolean 
+  statusWork: boolean;
 }

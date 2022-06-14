@@ -6,7 +6,10 @@ export interface Graduate {
   company:  String;
   position:  String;
   city:  String;
-  army: boolean;
-  specialty:  String;
+  army: 'Не служил'| 'В армии'| 'Отслужил'| String;
+  specialty?:  String;
+  year?: String;
   spec_work: boolean;
+  orphan: boolean;
+  invalid: boolean;
 }
